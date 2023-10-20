@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipdown Timer</title>
+    <link rel="stylesheet" href="css/flipdown.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/flipdown.js"></script>
+</head>
+
+<body>
+    <div class="timer">
+        <h1>Estamos em Manutenção, voltaremos em ...</h1>
+        <div id="flipdown" class="flipdown"></div>
+    </div>
+    <script>
+       document.addEventListener('DOMContentLoaded', () => {
+    // Defina a data futura desejada usando variáveis
+    const futureYear = 2023; // Ano futuro
+    const futureMonth = 11; // Mês futuro (de 0 a 11, 0 é janeiro, 11 é dezembro)
+    const futureDay = 25; // Dia futuro
+    const futureHour = 00; // Hora futura (0 a 23)
+    const futureMinute = 10; // Minuto futuro (0 a 59)
+    const futureSecond = 00; // Segundo futuro (0 a 59)
+
+    // Converta a data futura em um timestamp Unix
+    const futureTimestamp = Date.UTC(
+      futureYear,
+      futureMonth,
+      futureDay,
+      futureHour,
+      futureMinute,
+      futureSecond
+    ) / 1000; 
+
+    let flipdown = new FlipDown(futureTimestamp)
+      .start()
+      .ifEnded(() => {
+        document.querySelector(".flipdown").innerHTML = `<h2>Timer has ended</h2>`;
+      });
+  });
+    </script>
+</body>
+
+</html>
